@@ -18,9 +18,37 @@ new = []
 for d in data:
 	if len(d) < 100:
 		new.append(d)
-print('Note:', len(new), 'messages (length is lower than 100).')
+print('Note 1:', len(new), 'messages (length is lower than 100).')
 
+good = []
+for d in data:
+	if 'good' in d:
+		good.append(d)
+print('Note 2:', len(good), 'messages mentioned "good".')
 
+# word count
+wc = {} 
+for d in data:
+	words = d.split()
+	for word in words:
+		if word in wc:
+			wc[word] += 1
+		else:
+			wc[word] = 1 # add new key into wc dictionary
+for word in wc:
+	if wc[word] > 1000000:
+		print(word, wc[word])
+
+while True:
+	word = input('What word do you want to search..? ')
+	if word == 'q':
+		break
+	if word in wc:
+		print(word, ': it appears', wc[word], 'times.')
+	else:
+		print(word, ': it has not appeared yet..')
+
+print('Good-bye!')
 
 
 
